@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using EntityTest.Properties;
 using Server.Entities;
@@ -20,6 +21,7 @@ namespace Server.Services
 
     public class FridgeService : IFridgeService
     {
+
         public CreateFridgeResponse CreateFridge(CreateFridgeModel createFridgeModel)
         {
             CreateFridgeResponse createFridgeResponse = new CreateFridgeResponse();

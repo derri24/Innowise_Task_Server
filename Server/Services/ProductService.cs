@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using EntityTest.Properties;
 using Server.Entities;
@@ -15,6 +17,8 @@ namespace Server.Services
         public UpdateProductResponse GetProductById(int productId, int fridgeId);
         public UpdateProductResponse UpdateProduct(int fridgeId, UpdateProductModel updateProductModel);
         public DeleteProductResponse DeleteProduct(int productId);
+
+        public void CallStoredProcedure();
     }
 
     public class ProductService : IProductService
@@ -203,5 +207,20 @@ namespace Server.Services
             deleteProductResponse.StatusResponse = StatusResponse.Success;
             return deleteProductResponse;
         }
+        
+        public void CallStoredProcedure()
+        {
+            using (var connection = new SqlConnection(EntityContext.GetConnectionString()))
+            {
+                using (var command = new SqlCommand("dbo.stored_procedure", connection) { 
+                           CommandType = CommandType.StoredProcedure }) {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
     }
+    
+    
 }
