@@ -6,14 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityTest.Properties;
+using Server.Controllers;
+using Server.Entities;
+using Server.Models;
+using Server.Services;
 
-namespace Server_Template
+namespace Server
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+           CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
